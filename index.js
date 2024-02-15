@@ -1,13 +1,8 @@
 
-var ul = document.getElementById('ul')
+
 var form = document.getElementById('add-todo');
-var  toDolist = document.getElementById('todo-list');
-var input = document.querySelector(input);
-
-
-function resetInput() {
-    toDoItem = "";
-}
+var  toDoList = document.getElementById('todo-list');
+var input = document.querySelector('input');
 
 //call form / access form data /create input
 form.onsubmit = function(e) {
@@ -15,36 +10,35 @@ form.onsubmit = function(e) {
     e.preventDefault()
     console.log('submitted');//show submitted
     //access form data by targeting the input
-    var toDoItem = document.querySelector('input');
-    console.log(toDoItem.value);
+    var toDoItem = input.value.trim();//get input and stores the input
+    console.log(input.value);
+    if (!toDoItem) return// checking if its there
+    input.value = "" //clears the field
     
     // check to see if toDoItem is on the list already, if not continue
-    if (toDoItem !== "") {
-        var toDoList = document.getElementById('#toDoList');
+    
+        
+        var listItem = document.createElement('li');//create li El
         var button = document.createElement('button');//create button El
-        var myList = document.createElement('li');//create li El
+        listItem.appendChild(button)//this is the li list
         button.textContent = toDoItem;
-        console.log(toDoItem,'readdy to log item')
+           console.log(button.textContent,'readdy to log item')
+        button.onClick = handleClick //check if someone clicks
+        toDoList.appendChild(listItem)//Post Item add to page
         
-        toDoItem.appendChild(myList)//this is the li list
-        myList.appendChild(toDoItem)
-        
-        //myList.document.querySelector('#todo-list').textContent = toDoItem
 
-        console.log(myList.value, 'toDoItem');
+        console.log(listItem.value, 'toDoItem');
         
-         //reset value
-        toDoItem = " ";
         
-    }
-    //reset the form fields after console.logging the item
-    toDoItem.value = "";
-    console.log(toDoItem, "return to empty");
-   
-    //add items to the list 
     
 }
 
-
+function handleClick(e) {//when theres a click on list item
+    if (listItem.textDecoration.includes('line-through')){ //checking if line through the Item
+        //if line then delete item
+    } else {
+        //put delete list item
+    }
+}
 
 
